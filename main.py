@@ -15,7 +15,12 @@ def main():
     
     args = parser.parse_args()
     
-    print(f'{args.command} - {args.path_file} - {args.destination}')
+    commands = {
+        'copy': lambda: FileManager.copy_file(args.path_file, args.destination)
+    }
+    
+    print(f'Выполняем команду {args.command} >>>')
+    commands[args.command]()
 
 
 if __name__ == '__main__':

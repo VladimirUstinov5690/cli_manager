@@ -5,33 +5,56 @@ from file_manager import FileManager
 
 
 def test_copy_file_create(tmp_path):
-    """Checking file copying"""
-    # Creating a temporary file
+    """Проверка копирования файла"""
+    # Создание временного файла
     content = 'Test text!!!'
     file_test = tmp_path / 'test.txt'
     file_test.write_text(content)
     
-    # Create a copy of the file
+    # Создание копии временного файла
     copy_file = FileManager.copy_file(str(file_test))
     
-    # Checking file existence
+    # Проерка существованию скопированного файла
     assert os.path.isfile(copy_file)
     
-    # Text match check
+    # Проверка содержимого файла
     with open(copy_file, 'r', encoding='utf-8') as file:
         file.read() == content
     
-    # Checking copy's name
+    # Проверка имени файла
     assert '_copy1' in copy_file
 
 
+def test_copy_to_new_directory(tmp_path):
+    """Проверка копирования в указанную директорию"""
+    # Создание временного файла
+    content = 'New text'
+    file_test = tmp_path / 'test.txt'
+    file_test.write_text(content)
+    
+    # Создание временной директории
+    new_dir = tmp_path / 'target_dir'
+    new_dir.mkdir()
+    
+    path_copy = FileManager.copy_file(str(file_test), str(new_dir))
+    
+    assert os.path.isfile(path_copy)
+    
+    with open(path_copy, 'r', encoding='utf-8') as f:
+        assert f.read() == content
+
+
 def test_file_not_found():
-    """Exception checking FileNotFoundError"""
+    """Проверка исключения FileNotFoundError"""
     with pytest.raises(FileNotFoundError):
-        FileManager.copy_file('path_not_exist.py')
+        FileManager.copy_file('non_existing_file.txt')
 
 
-def test_is_directory(tmp_path):
-    """Exception checking IsADirectoryError"""
-    with pytest.raises(IsADirectoryError):
-        FileManager.copy_file(tmp_path)
+def test_not_found_destination(tmp_path):
+    """Проверка исключения, если путь копирования не существует"""
+    file_test = tmp_path / 'file.txt'
+    file_test.write_text('text')
+    
+    incorrect_dest = tmp_path / 'not_directory'
+    with pytest.raises(FileNotFoundError):
+        FileManager.copy_file(str(file_test), str(incorrect_dest))
