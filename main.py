@@ -13,14 +13,22 @@ def main():
                              nargs='?',
                              default=None)
     
+    delete_parser = sub_parser.add_parser('delete', help='Delete file or dir')
+    delete_parser.add_argument('path', help='Path to file or dir')
+    
     args = parser.parse_args()
     
     commands = {
-        'copy': lambda: FileManager.copy_file(args.path_file, args.destination)
+        'copy': lambda: FileManager.copy_file(args.path_file, args.destination),
+        'delete': lambda: FileManager.delete(args.path)
+        
     }
     
     print(f'Выполняем команду {args.command} >>>')
-    commands[args.command]()
+    try:
+        commands[args.command]()
+    except FileNotFoundError as a:
+        print(f'Ошибка: {a}')
 
 
 if __name__ == '__main__':

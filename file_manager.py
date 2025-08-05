@@ -38,6 +38,15 @@ class FileManager:
         return create_path
     
     @staticmethod
-    def delete(path):
+    def delete(path_to_obj: str):
         """Удаляет указанную директорию или файл"""
-        pass
+        if os.path.exists(path_to_obj):
+            if os.path.isdir(path_to_obj):
+                shutil.rmtree(path_to_obj)
+                print(f'Директория {os.path.basename(path_to_obj)} удалёна!')
+            else:
+                os.remove(path_to_obj)
+                print(f'Файл {os.path.basename(path_to_obj)} удалён!')
+            return True
+        else:
+            raise FileNotFoundError(f'Путь {path_to_obj} не существует!')
