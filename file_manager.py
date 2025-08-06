@@ -1,7 +1,9 @@
 import os
 import shutil
 
-from utils import change_file_name
+from fnmatch import fnmatch
+
+from utils import change_file_name, pretty_print
 
 
 class FileManager:
@@ -66,3 +68,35 @@ class FileManager:
             amount_files += len(lst_files)
         print(f'Количество файлов в директории: {amount_files}')
         return amount_files
+    
+    @staticmethod
+    def find_file(path_dir: str, pattern: str) -> list[tuple]:
+        """Ищет все файлы согласно шаблону (pattern)"""
+        if not os.path.exists(path_dir):
+            raise FileNotFoundError(f'Директория {path_dir} не найдена!')
+        
+        if not os.path.isdir(path_dir):
+            raise IsADirectoryError(
+                'Необходимо передать директорию для поиска файлов!')
+        
+        files_list = []
+        for path_dir, _, lst_files in os.walk(path_dir):
+            files_list += [(path_dir, file) for file in lst_files if
+                           fnmatch(file, pattern) and file not in files_list]
+        
+        res_lst = []
+        
+        if files_list:
+            print(f'Найдено совпадений: {len(files_list)}')
+            for i, file in enumerate(files_list):
+                res_lst.append((i + 1, file[0], file[1]))
+            
+            columns = ['№', 'Путь', 'Имя файла']
+            print(pretty_print(res_lst, columns))
+            return res_lst
+
+
+path = r'C:\Users\Anva\Desktop\folder'
+pattern = 'y*.*'
+
+FileManager.find_file(path, pattern)
