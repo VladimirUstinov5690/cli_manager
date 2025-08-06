@@ -50,3 +50,19 @@ class FileManager:
             return True
         else:
             raise FileNotFoundError(f'Путь {path_to_obj} не существует!')
+    
+    @staticmethod
+    def num_files(path_dir: str):
+        """Считает количество файлов в директории"""
+        if not os.path.exists(path_dir):
+            raise FileNotFoundError(f'Директория {path_dir} не найдена!')
+        
+        if not os.path.isdir(path_dir):
+            raise NotADirectoryError(
+                'Необходимо передать директорию для подсчёта количества файлов!')
+        
+        amount_files = 0
+        for _, _, lst_files in os.walk(path_dir):
+            amount_files += len(lst_files)
+        print(f'Количество файлов в директории: {amount_files}')
+        return amount_files
