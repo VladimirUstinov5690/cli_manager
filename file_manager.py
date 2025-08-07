@@ -70,7 +70,7 @@ class FileManager:
         return amount_files
     
     @staticmethod
-    def find_file(path_dir: str, pattern: str) -> list[tuple]:
+    def find_file(path_dir: str, pattern: str) -> list[tuple] | None:
         """Ищет все файлы согласно шаблону (pattern)"""
         if not os.path.exists(path_dir):
             raise FileNotFoundError(f'Директория {path_dir} не найдена!')
@@ -82,7 +82,7 @@ class FileManager:
         files_list = []
         for path_dir, _, lst_files in os.walk(path_dir):
             files_list += [(path_dir, file) for file in lst_files if
-                           fnmatch(file, pattern) and file not in files_list]
+                           fnmatch(file, pattern)]
         
         res_lst = []
         
@@ -94,9 +94,7 @@ class FileManager:
             columns = ['№', 'Путь', 'Имя файла']
             print(pretty_print(res_lst, columns))
             return res_lst
+        else:
+            print('Совпадений не найдено!')
+            return None
 
-
-path = r'C:\Users\Anva\Desktop\folder'
-pattern = 'y*.*'
-
-FileManager.find_file(path, pattern)

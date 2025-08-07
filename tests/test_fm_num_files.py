@@ -6,7 +6,7 @@ from file_manager import FileManager
 
 def test_num_files(tmp_path):
     """Проверка подсчёта количества файлов"""
-    # Создаём временные директорию
+    # Создаём временные директории
     test_dir1 = tmp_path / 'folder_test1'
     test_dir1.mkdir()
     
