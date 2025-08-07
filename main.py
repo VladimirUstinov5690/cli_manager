@@ -19,14 +19,21 @@ def main():
     delete_parser.add_argument('path', help='Path to file or dir')
     
     # Парсеры для команды NUM_FILES и аргументов
-    delete_parser = sub_parser.add_parser('num_files',
-                                          help='Delete file or dir')
-    delete_parser.add_argument('path', help='Path to dir')
+    nf_parser = sub_parser.add_parser('num_files',
+                                      help='Show amount of files')
+    nf_parser.add_argument('path', help='Path to dir')
     
-    # Парсеры для команды NUM_FILES и аргументов
-    delete_parser = sub_parser.add_parser('find', help='Search files')
-    delete_parser.add_argument('path', help='Path to dir')
-    delete_parser.add_argument('pattern', help='Search pattern')
+    # Парсеры для команды FIND и аргументов
+    find_parser = sub_parser.add_parser('find', help='Search files')
+    find_parser.add_argument('path', help='Path to dir')
+    find_parser.add_argument('pattern', help='Search pattern')
+    
+    # Парсеры для команды ADD_DATE и аргументов
+    add_date_parser = sub_parser.add_parser('add_date',
+                                            help='Add date to file')
+    add_date_parser.add_argument('path', help='Path to file or dir')
+    add_date_parser.add_argument('--recursive', action='store_true',
+                                 help='recursive traversal')
     
     args = parser.parse_args()
     
@@ -35,7 +42,8 @@ def main():
                                               args.destination),
         'delete': lambda: FileManager.delete(args.path),
         'num_files': lambda: FileManager.num_files(args.path),
-        'find': lambda: FileManager.find_file(args.path, args.pattern)
+        'find': lambda: FileManager.find_file(args.path, args.pattern),
+        'add_date': lambda: FileManager.add_date(args.path, recursive=args.recursive)
     }
     
     print(f'Выполняем команду {args.command} >>>')

@@ -3,7 +3,7 @@ import shutil
 
 from fnmatch import fnmatch
 
-from utils import change_file_name, pretty_print
+from utils import change_file_name, pretty_print, create_new_file
 
 
 class FileManager:
@@ -97,4 +97,53 @@ class FileManager:
         else:
             print('Совпадений не найдено!')
             return None
+    
+    @staticmethod
+    def add_date(path: str, recursive=False) -> list[tuple] | None:
+        """Добавляет к файлу дату создания, если выбрана директория
+         ко всем файлам в директории, если есть ключ --recursive - во
+          все файлы на всех уровнях вложения
+        """
+        if not os.path.exists(path):
+            raise FileNotFoundError(f'Не удается найти указанный файл {path}!')
+        
+        if os.path.isfile(path):
+            new_path = create_new_file(path)
+            os.rename(path, new_path)
+            print(f'Файл {os.path.basename(path)} переименован -> {os.path.basename(new_path)}')
+            return None
+        
+        res_files = []
+        if recursive:
+            for current_dir, _, filenames in os.walk(path):
+                for file in filenames:
+                    path_file = os.path.join(current_dir, file)
+                    new_path_file = create_new_file(path_file)
+                    if not os.path.isfile(new_path_file):
+                        os.rename(path_file, new_path_file)
+                    else:
+                        continue
+                    res_files.append((file, os.path.basename(new_path_file)))
+        else:
+            for obj in os.listdir(path):
+                path_file = os.path.join(path, obj)
+                if os.path.isfile(path_file):
+                    new_path_file = create_new_file(path_file)
+                    if not os.path.isfile(new_path_file):
+                        os.rename(path_file, new_path_file)
+                    else:
+                        continue
+                    res_files.append((obj, os.path.basename(new_path_file)))
+        
+        res_list = []
+        if res_files:
+            for i, file in enumerate(res_files):
+                res_list.append((i + 1, file[0], file[1]))
+        else:
+            print('Все файлы уже с датой создания!!!')
+            return None
+        
+        columns = ['№', 'Старое имя', 'Новое имя']
+        print(pretty_print(res_list, columns))
+        return res_files
 
