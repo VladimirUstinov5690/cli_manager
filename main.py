@@ -13,21 +13,29 @@ def main():
     copy_parser.add_argument('destination', help='Path to directory',
                              nargs='?',
                              default=None)
-
+    
     # Парсеры для команды DELETE и аргументов
     delete_parser = sub_parser.add_parser('delete', help='Delete file or dir')
     delete_parser.add_argument('path', help='Path to file or dir')
-
+    
     # Парсеры для команды NUM_FILES и аргументов
-    delete_parser = sub_parser.add_parser('num_files', help='Delete file or dir')
+    delete_parser = sub_parser.add_parser('num_files',
+                                          help='Delete file or dir')
     delete_parser.add_argument('path', help='Path to dir')
+    
+    # Парсеры для команды NUM_FILES и аргументов
+    delete_parser = sub_parser.add_parser('find', help='Search files')
+    delete_parser.add_argument('path', help='Path to dir')
+    delete_parser.add_argument('pattern', help='Search pattern')
     
     args = parser.parse_args()
     
     commands = {
-        'copy': lambda: FileManager.copy_file(args.path_file, args.destination),
+        'copy': lambda: FileManager.copy_file(args.path_file,
+                                              args.destination),
         'delete': lambda: FileManager.delete(args.path),
         'num_files': lambda: FileManager.num_files(args.path),
+        'find': lambda: FileManager.find_file(args.path, args.pattern)
     }
     
     print(f'Выполняем команду {args.command} >>>')
