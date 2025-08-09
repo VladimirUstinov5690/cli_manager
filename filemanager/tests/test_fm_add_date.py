@@ -1,8 +1,6 @@
-import os
-import shutil
 import pytest
-from file_manager import FileManager
-from utils import get_create_file_date
+from filemanager.file_manager import FileManager
+from filemanager.utils import get_create_file_date
 
 
 def create_file(path, content="test"):

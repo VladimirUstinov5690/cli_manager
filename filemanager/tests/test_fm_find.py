@@ -1,6 +1,6 @@
 import os
 import pytest
-from file_manager import FileManager
+from filemanager.file_manager import FileManager
 
 
 def test_find_files(tmp_path):

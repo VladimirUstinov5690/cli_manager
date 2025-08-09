@@ -1,5 +1,5 @@
 import argparse
-from file_manager import FileManager
+from filemanager.file_manager import FileManager
 
 
 def main():
