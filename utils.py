@@ -44,3 +44,12 @@ def create_new_file(path_file: str) -> str:
     new_path = os.path.join(path_dir, new_filename)
     
     return new_path
+
+
+def size_calculation(size):
+    """Преобразует размер в байты, килобайты, мегабайты, гигабайты, терабайты"""
+    for unit in ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ']:
+        if size < 1024:
+            return f"{size:.2f} {unit}"
+        size /= 1024
+    return f"{size:.2f} ПБ"
