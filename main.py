@@ -34,6 +34,12 @@ def main():
     add_date_parser.add_argument('path', help='Path to file or dir')
     add_date_parser.add_argument('--recursive', action='store_true',
                                  help='recursive traversal')
+
+    # Парсеры для команды ANALYZE и аргументов
+    analyse_parser = sub_parser.add_parser('analyze',
+                                           help='Analyze dirs or files')
+    analyse_parser.add_argument('path', nargs='?', default=None,
+                                help='Path to dir or file')
     
     args = parser.parse_args()
     
@@ -44,7 +50,8 @@ def main():
         'num_files': lambda: FileManager.num_files(args.path),
         'find': lambda: FileManager.find_file(args.path, args.pattern),
         'add_date': lambda: FileManager.add_date(args.path,
-                                                 recursive=args.recursive)
+                                                 recursive=args.recursive),
+        'analyze': lambda: FileManager.analyze(args.path)
     }
     
     print(f'Выполняем команду {args.command} >>>')

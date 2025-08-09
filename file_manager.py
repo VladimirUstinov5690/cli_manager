@@ -150,10 +150,13 @@ class FileManager:
         return res_files
     
     @staticmethod
-    def analyse(path: str = None):
+    def analyze(path: str = None):
         """Анализирует папку и выводит размеры содержимого уровня"""
         if path is None:
             path = os.getcwd()
+            
+        if os.path.isfile(path):
+            raise NotADirectoryError('Необходимо передать путь до директории!')
         
         if not os.path.exists(path):
             raise FileNotFoundError(f'Путь {path} не существует!')
