@@ -3,7 +3,8 @@ import shutil
 
 from fnmatch import fnmatch
 
-from utils import change_file_name, pretty_print, create_new_file
+from utils import change_file_name, pretty_print, create_new_file, \
+    size_calculation
 
 
 class FileManager:
@@ -110,7 +111,8 @@ class FileManager:
         if os.path.isfile(path):
             new_path = create_new_file(path)
             os.rename(path, new_path)
-            print(f'Файл {os.path.basename(path)} переименован -> {os.path.basename(new_path)}')
+            print(
+                f'Файл {os.path.basename(path)} переименован -> {os.path.basename(new_path)}')
             return None
         
         res_files = []
@@ -146,4 +148,48 @@ class FileManager:
         columns = ['№', 'Старое имя', 'Новое имя']
         print(pretty_print(res_list, columns))
         return res_files
+    
+    @staticmethod
+    def analyse(path: str = None):
+        """Анализирует папку и выводит размеры содержимого уровня"""
+        if path is None:
+            path = os.getcwd()
+        
+        if not os.path.exists(path):
+            raise FileNotFoundError(f'Путь {path} не существует!')
+        
+        # Общий размер всех вложенных файлов
+        total_size = 0
+        for dirpath, _, filenames in os.walk(path):
+            for filename in filenames:
+                fp = os.path.join(dirpath, filename)
+                if os.path.isfile(fp):
+                    total_size += os.path.getsize(fp)
+        
+        print(f"Общий размер: {size_calculation(total_size)}")
+        
+        # Размер объектов первого уровня
+        data_lst = []
+        for obj in os.listdir(path):
+            obj_path = os.path.join(path, obj)
+            size = 0
+            if os.path.isfile(obj_path):
+                size = os.path.getsize(obj_path)
+            elif os.path.isdir(obj_path):
+                for dirpath, _, filenames in os.walk(obj_path):
+                    for filename in filenames:
+                        fp = os.path.join(dirpath, filename)
+                        if os.path.isfile(fp):
+                            size += os.path.getsize(fp)
+            data_lst.append((obj, size_calculation(size)))
+        
+        res_files_data = []
+        if data_lst:
+            for i, file in enumerate(data_lst):
+                res_files_data.append((i + 1, file[0], file[1]))
+        
+        columns = ['№', 'Имя', 'Размер']
+        print(pretty_print(res_files_data, columns))
+        
+        return data_lst
 

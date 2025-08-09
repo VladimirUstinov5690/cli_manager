@@ -43,7 +43,8 @@ def main():
         'delete': lambda: FileManager.delete(args.path),
         'num_files': lambda: FileManager.num_files(args.path),
         'find': lambda: FileManager.find_file(args.path, args.pattern),
-        'add_date': lambda: FileManager.add_date(args.path, recursive=args.recursive)
+        'add_date': lambda: FileManager.add_date(args.path,
+                                                 recursive=args.recursive)
     }
     
     print(f'Выполняем команду {args.command} >>>')
