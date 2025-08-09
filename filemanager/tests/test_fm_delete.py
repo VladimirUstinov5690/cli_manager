@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from file_manager import FileManager
+from filemanager.file_manager import FileManager
 
 
 def test_delete_file(tmp_path):

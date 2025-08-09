@@ -1,7 +1,7 @@
 import pytest
 import os
 
-from file_manager import FileManager
+from filemanager.file_manager import FileManager
 
 
 def test_num_files(tmp_path):

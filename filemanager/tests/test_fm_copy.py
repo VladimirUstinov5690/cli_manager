@@ -1,7 +1,7 @@
 import os
 import pytest
 
-from file_manager import FileManager
+from filemanager.file_manager import FileManager
 
 
 def test_copy_file_create(tmp_path):

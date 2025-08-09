@@ -1,7 +1,7 @@
 import os
 import tempfile
 import pytest
-from file_manager import FileManager
+from filemanager.file_manager import FileManager
 
 
 def create_test_files(base_dir):

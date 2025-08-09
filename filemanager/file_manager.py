@@ -3,7 +3,7 @@ import shutil
 
 from fnmatch import fnmatch
 
-from utils import change_file_name, pretty_print, create_new_file, \
+from .utils import change_file_name, pretty_print, create_new_file, \
     size_calculation
 
 
@@ -194,3 +194,5 @@ class FileManager:
         print(pretty_print(res_files_data, columns))
         
         return data_lst
+
+
