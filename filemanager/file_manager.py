@@ -2,9 +2,8 @@ import os
 import shutil
 
 from fnmatch import fnmatch
+from .utils import change_file_name, pretty_print, create_new_file,size_calculation
 
-from .utils import change_file_name, pretty_print, create_new_file, \
-    size_calculation
 
 
 class FileManager:
@@ -154,6 +153,7 @@ class FileManager:
         """Анализирует папку и выводит размеры содержимого уровня"""
         if path is None:
             path = os.getcwd()
+
         if os.path.isfile(path):
             raise NotADirectoryError('Необходимо передать путь до директории!')
         
@@ -194,5 +194,3 @@ class FileManager:
         print(pretty_print(res_files_data, columns))
         
         return data_lst
-
-
