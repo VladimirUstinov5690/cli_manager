@@ -40,9 +40,9 @@ def main():
                                            help='Analyze dirs or files')
     analyse_parser.add_argument('path', nargs='?', default=None,
                                 help='Path to dir or file')
-    
+
     args = parser.parse_args()
-    
+
     commands = {
         'copy': lambda: FileManager.copy_file(args.path_file,
                                               args.destination),
@@ -53,7 +53,7 @@ def main():
                                                  recursive=args.recursive),
         'analyze': lambda: FileManager.analyze(args.path)
     }
-    
+
     print(f'Выполняем команду {args.command} >>>')
     try:
         commands[args.command]()

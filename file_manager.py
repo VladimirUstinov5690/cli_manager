@@ -154,7 +154,6 @@ class FileManager:
         """Анализирует папку и выводит размеры содержимого уровня"""
         if path is None:
             path = os.getcwd()
-            
         if os.path.isfile(path):
             raise NotADirectoryError('Необходимо передать путь до директории!')
         
@@ -195,4 +194,3 @@ class FileManager:
         print(pretty_print(res_files_data, columns))
         
         return data_lst
-
