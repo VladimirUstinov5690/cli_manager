@@ -110,266 +110,198 @@ class Ui_MainWindow(object):
         self.rootLayout = QtWidgets.QHBoxLayout(self.centralwidget)
         self.rootLayout.setSpacing(0)
         self.rootLayout.setObjectName("rootLayout")
+
         self.leftLayout = QtWidgets.QVBoxLayout()
         self.leftLayout.setContentsMargins(-1, -1, 10, -1)
         self.leftLayout.setSpacing(10)
         self.leftLayout.setObjectName("leftLayout")
+
         self.lblOperations = QtWidgets.QLabel(self.centralwidget)
         self.lblOperations.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.lblOperations.setObjectName("lblOperations")
         self.leftLayout.addWidget(self.lblOperations)
+
         self.btnCopy = QtWidgets.QPushButton(self.centralwidget)
         self.btnCopy.setMaximumSize(QtCore.QSize(249, 42))
         self.btnCopy.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnCopy.setObjectName("btnCopy")
         self.leftLayout.addWidget(self.btnCopy)
+
         self.btnDelete = QtWidgets.QPushButton(self.centralwidget)
         self.btnDelete.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnDelete.setObjectName("btnDelete")
         self.leftLayout.addWidget(self.btnDelete)
+
         self.btnCount = QtWidgets.QPushButton(self.centralwidget)
         self.btnCount.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnCount.setObjectName("btnCount")
         self.leftLayout.addWidget(self.btnCount)
+
         self.btnFind = QtWidgets.QPushButton(self.centralwidget)
         self.btnFind.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnFind.setObjectName("btnFind")
         self.leftLayout.addWidget(self.btnFind)
+
         self.btnAddDate = QtWidgets.QPushButton(self.centralwidget)
         self.btnAddDate.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnAddDate.setObjectName("btnAddDate")
         self.leftLayout.addWidget(self.btnAddDate)
+
         self.btnAnalyze = QtWidgets.QPushButton(self.centralwidget)
         self.btnAnalyze.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnAnalyze.setObjectName("btnAnalyze")
         self.leftLayout.addWidget(self.btnAnalyze)
+
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.leftLayout.addItem(spacerItem)
+
         self.rootLayout.addLayout(self.leftLayout)
+
         self.rightLayout = QtWidgets.QVBoxLayout()
         self.rightLayout.setSpacing(14)
         self.rightLayout.setObjectName("rightLayout")
+
         self.groupParams = QtWidgets.QGroupBox(self.centralwidget)
         self.groupParams.setTitle("")
         self.groupParams.setObjectName("groupParams")
+
         self.paramsGrid = QtWidgets.QGridLayout(self.groupParams)
         self.paramsGrid.setSpacing(8)
         self.paramsGrid.setObjectName("paramsGrid")
+
         self.lblPath = QtWidgets.QLabel(self.groupParams)
         self.lblPath.setObjectName("lblPath")
         self.paramsGrid.addWidget(self.lblPath, 0, 0, 1, 1)
+
         self.lePath = QtWidgets.QLineEdit(self.groupParams)
         self.lePath.setObjectName("lePath")
         self.paramsGrid.addWidget(self.lePath, 0, 1, 1, 1)
+
         self.browseLayout = QtWidgets.QHBoxLayout()
         self.browseLayout.setSpacing(6)
         self.browseLayout.setObjectName("browseLayout")
+
         self.btnBrowseFile = QtWidgets.QPushButton(self.groupParams)
         self.btnBrowseFile.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnBrowseFile.setObjectName("btnBrowseFile")
         self.browseLayout.addWidget(self.btnBrowseFile)
         self.paramsGrid.addLayout(self.browseLayout, 0, 2, 1, 1)
+
         self.lblDest = QtWidgets.QLabel(self.groupParams)
         self.lblDest.setObjectName("lblDest")
         self.paramsGrid.addWidget(self.lblDest, 1, 0, 1, 1)
+
         self.leDest = QtWidgets.QLineEdit(self.groupParams)
         self.leDest.setObjectName("leDest")
         self.paramsGrid.addWidget(self.leDest, 1, 1, 1, 1)
+
         self.btnBrowseDest = QtWidgets.QPushButton(self.groupParams)
         self.btnBrowseDest.setStyleSheet("QPushButton {\n"
-"    background-color: #5C7EBE;   /* обычное состояние */\n"
+"    background-color: #5C7EBE;\n"
 "    color: white;\n"
 "    border-radius: 10px;\n"
 "    padding: 8px 14px;\n"
 "}\n"
 "\n"
-"QPushButton:hover {\n"
-"    background-color: #4969A6;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #324A80;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
+"QPushButton:hover { background-color: #4969A6; }\n"
+"QPushButton:pressed { background-color: #324A80; }\n"
+"QPushButton:disabled { background-color: #A0AEC0; color: #E2E8F0; }")
         self.btnBrowseDest.setObjectName("btnBrowseDest")
         self.paramsGrid.addWidget(self.btnBrowseDest, 1, 2, 1, 1)
+
         self.lblPattern = QtWidgets.QLabel(self.groupParams)
         self.lblPattern.setObjectName("lblPattern")
         self.paramsGrid.addWidget(self.lblPattern, 2, 0, 1, 1)
+
         self.lePattern = QtWidgets.QLineEdit(self.groupParams)
         self.lePattern.setObjectName("lePattern")
         self.paramsGrid.addWidget(self.lePattern, 2, 1, 1, 2)
+
         self.chkRecursive = QtWidgets.QCheckBox(self.groupParams)
         self.chkRecursive.setObjectName("chkRecursive")
         self.paramsGrid.addWidget(self.chkRecursive, 3, 0, 1, 1)
-        self.runRow = QtWidgets.QHBoxLayout()
-        self.runRow.setObjectName("runRow")
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.runRow.addItem(spacerItem1)
-        self.btnRun = QtWidgets.QPushButton(self.groupParams)
-        self.btnRun.setStyleSheet("QPushButton {\n"
-"    background-color: #ff7f00;   /* обычное состояние */\n"
-"    color: white;\n"
-"    border-radius: 10px;\n"
-"    padding: 8px 14px;\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"    background-color: #e66900;   /* при наведении */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #993d00;   /* при клике */\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #A0AEC0;   /* неактивная */\n"
-"    color: #E2E8F0;\n"
-"}")
-        self.btnRun.setObjectName("btnRun")
-        self.runRow.addWidget(self.btnRun)
-        self.paramsGrid.addLayout(self.runRow, 3, 1, 1, 2)
+
+        # Убрали кнопку "Выполнить команду" и строку запуска (runRow)
+
         self.rightLayout.addWidget(self.groupParams)
+
         self.tabWidget = QtWidgets.QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName("tabWidget")
+
         self.tabTable = QtWidgets.QWidget()
         self.tabTable.setObjectName("tabTable")
+
         self.tableLayout = QtWidgets.QVBoxLayout(self.tabTable)
         self.tableLayout.setObjectName("tableLayout")
+
         self.tableResults = QtWidgets.QTableWidget(self.tabTable)
         self.tableResults.setObjectName("tableResults")
         self.tableResults.setColumnCount(4)
         self.tableResults.setRowCount(0)
+
         item = QtWidgets.QTableWidgetItem()
         self.tableResults.setHorizontalHeaderItem(0, item)
         item = QtWidgets.QTableWidgetItem()
@@ -378,19 +310,26 @@ class Ui_MainWindow(object):
         self.tableResults.setHorizontalHeaderItem(2, item)
         item = QtWidgets.QTableWidgetItem()
         self.tableResults.setHorizontalHeaderItem(3, item)
+
         self.tableResults.horizontalHeader().setStretchLastSection(True)
         self.tableResults.verticalHeader().setStretchLastSection(True)
+
         self.tableLayout.addWidget(self.tableResults)
         self.tabWidget.addTab(self.tabTable, "")
+
         self.tabLogs = QtWidgets.QWidget()
         self.tabLogs.setObjectName("tabLogs")
+
         self.logsLayout = QtWidgets.QVBoxLayout(self.tabLogs)
         self.logsLayout.setObjectName("logsLayout")
+
         self.txtLog = QtWidgets.QTextEdit(self.tabLogs)
         self.txtLog.setReadOnly(True)
         self.txtLog.setObjectName("txtLog")
         self.logsLayout.addWidget(self.txtLog)
+
         self.tabWidget.addTab(self.tabLogs, "")
+
         self.rightLayout.addWidget(self.tabWidget)
         self.rootLayout.addLayout(self.rightLayout)
         MainWindow.setCentralWidget(self.centralwidget)
@@ -417,8 +356,8 @@ class Ui_MainWindow(object):
         self.btnBrowseDest.setText(_translate("MainWindow", "Выбрать…"))
         self.lblPattern.setText(_translate("MainWindow", "Шаблон:"))
         self.lePattern.setPlaceholderText(_translate("MainWindow", "например: *.log"))
-        self.chkRecursive.setText(_translate("MainWindow", "Рекурсивный"))
-        self.btnRun.setText(_translate("MainWindow", "Выполнить команду"))
+        self.chkRecursive.setText(_translate("MainWindow", "Рекурсивно добавить дату"))
+
         item = self.tableResults.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "№"))
         item = self.tableResults.horizontalHeaderItem(1)
@@ -432,11 +371,3 @@ class Ui_MainWindow(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabLogs), _translate("MainWindow", "Логи"))
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

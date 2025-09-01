@@ -2,7 +2,7 @@ import os, sys, PyQt5
 
 from PyQt5.QtGui import QCursor, QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, \
-    QFileDialog, QMenu
+    QFileDialog, QMenu, QTableWidgetItem, QHeaderView
 
 from filemanager.file_manager import FileManager
 from window import Ui_MainWindow
@@ -26,30 +26,33 @@ class MainWindow(QMainWindow):
         # Кнопка источника файла/папки
         self.ui.btnBrowseFile.setText("Источник…")
         
-        # Обработчик на кнопку «Копирование»
+        # Указываем обработчик на кнопку «Копирование»
         self.ui.btnCopy.clicked.connect(self.copy_clicked)
         self.ui.txtLog.append("Режим: копирование файла/папки")
         
-        # Обработчик на кнопку «Удаление»
+        # Указываем обработчик на кнопку «Удаление»
         self.ui.btnDelete.clicked.connect(self.delete_clicked)
-        self.ui.txtLog.append("Режим: копирование файла/папки")
+        self.ui.txtLog.append("Режим: удаление")
 
-        # Обработчик на кнопку «Подсчёт файлов»
+        # Указываем обработчик на кнопку «Подсчёт файлов»
         self.ui.btnCount.clicked.connect(self.num_files_clicked)
-        self.ui.txtLog.append("Режим: Подсчёт файлов")
+        self.ui.txtLog.append("Режим: подсчёт файлов")
+
+        # Указываем обработчик на кнопку «Поиск файлов»
+        self.ui.btnFind.clicked.connect(self.find_file_clicked)
+        self.ui.txtLog.append("Режим: поиск файлов")
         
+        # ----- Кнопки выбора файлов/директории -----
         # Кнопка-источник: меню «файл / папка»
         self.ui.btnBrowseFile.clicked.connect(self.open_source_menu)
         
-        # Кнопка «Директория назначения» оставляем как есть
+        # Кнопка «Директория назначения»
         self.ui.btnBrowseDest.clicked.connect(self.pick_dest_dir)
     
-    # -------- обработчики кликов на кнопки --------
+    # ----- обработчики кликов на кнопки -----
     
     def copy_clicked(self):
-        """читаем пути из полей ввода, вызываем FileManager.copy_file,
-            показываем результат/ошибку.
-        """
+        """Обрабатывает событие при нажатие на кнопку Копировать"""
         src_path = self.ui.lePath.text().strip()  # из кнопки источник: файл ИЛИ папка
         dest_dir = self.ui.leDest.text().strip()  # директория назначения
         
@@ -68,6 +71,7 @@ class MainWindow(QMainWindow):
             self.ui.txtLog.append(f"[Ошибка] {e}")
     
     def delete_clicked(self):
+        """Обрабатывает событие при нажатие на кнопку Удалить"""
         path = self.ui.lePath.text().strip()
         
         if not path:
@@ -85,6 +89,7 @@ class MainWindow(QMainWindow):
             self.ui.txtLog.append(f"[Ошибка] {e}")
     
     def num_files_clicked(self):
+        """Обрабатывает событие при нажатие на кнопку Подсчёт файлы"""
         path_dir = self.ui.lePath.text().strip()
         
         if not path_dir:
@@ -101,7 +106,60 @@ class MainWindow(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Ошибка подсчёта!", str(e))
             self.ui.txtLog.append(f"[Ошибка подсчёта] {e}")
+            
+    def find_file_clicked(self):
+        """Обрабатывает событие при нажатие на кнопку Поиск файлов"""
+        path_dir = self.ui.lePath.text().strip()
+        pattern = self.ui.lePattern.text().strip()
+        
+        if not path_dir:
+            QMessageBox.information(self, "Поиск файлов",
+                                    "Укажите путь к директории!")
+            return
+        
+        if not pattern:
+            QMessageBox.information(self, "Поиск файлов",
+                                    "Укажите шаблон для поиска!")
+            
+        try:
+            files = FileManager.find_file(path_dir, pattern)
+
+            # Очистим таблицу
+            self.ui.tableResults.clearContents()
+            self.ui.tableResults.setRowCount(0)
+
+            if not files:
+                self.ui.txtLog.append(
+                    f"Совпадений по шаблону «{pattern}» не найдено.")
+                QMessageBox.information(self, "Результат поиска",
+                                        "Совпадений не найдено.")
+                return
+
+            self.ui.tableResults.setRowCount(len(files))
+
+            for row, item in enumerate(files):
+                _, dir_path, filename = item
+                self.ui.tableResults.setItem(row, 0, QTableWidgetItem(str(row + 1)))
+                self.ui.tableResults.setItem(row, 1, QTableWidgetItem(dir_path))
+                self.ui.tableResults.setItem(row, 2, QTableWidgetItem(filename))
+                self.ui.tableResults.setItem(row, 3, QTableWidgetItem(""))
     
+            # Равномерно растягиваем колонки
+            header = self.ui.tableResults.horizontalHeader()
+            header.setSectionResizeMode(QHeaderView.Stretch)
+
+            # Переключаем на вкладку «Таблица»
+            self.ui.tabWidget.setCurrentWidget(self.ui.tabTable)
+
+            self.ui.txtLog.append(
+                f"Выполнен поиск файлов по шаблону: {pattern}")
+
+        except Exception as e:
+            QMessageBox.critical(self, "Ошибка поиска!", str(e))
+            self.ui.txtLog.append(f"[Ошибка поиска] {e}")
+            
+        
+        
     # -------- пикеры --------
     
     def open_source_menu(self):
