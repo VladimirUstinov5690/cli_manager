@@ -33,6 +33,10 @@ class MainWindow(QMainWindow):
         # Обработчик на кнопку «Удаление»
         self.ui.btnDelete.clicked.connect(self.delete_clicked)
         self.ui.txtLog.append("Режим: копирование файла/папки")
+
+        # Обработчик на кнопку «Подсчёт файлов»
+        self.ui.btnCount.clicked.connect(self.num_files_clicked)
+        self.ui.txtLog.append("Режим: Подсчёт файлов")
         
         # Кнопка-источник: меню «файл / папка»
         self.ui.btnBrowseFile.clicked.connect(self.open_source_menu)
@@ -79,8 +83,24 @@ class MainWindow(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Ошибка удаления!", str(e))
             self.ui.txtLog.append(f"[Ошибка] {e}")
-            
     
+    def num_files_clicked(self):
+        path_dir = self.ui.lePath.text().strip()
+        
+        if not path_dir:
+            QMessageBox.information(self, "Подсчёт файлов",
+                                    "Укажите путь к директории!")
+            return
+        
+        try:
+            count_files = FileManager.num_files(path_dir)
+            self.ui.txtLog.append(
+                f"Количество файлов в папке {os.path.basename(path_dir)}: {count_files}")
+            QMessageBox.information(self, "Подсчёт файлов",
+                                    f"Количество файлов в папке: {count_files}")
+        except Exception as e:
+            QMessageBox.critical(self, "Ошибка подсчёта!", str(e))
+            self.ui.txtLog.append(f"[Ошибка подсчёта] {e}")
     
     # -------- пикеры --------
     
