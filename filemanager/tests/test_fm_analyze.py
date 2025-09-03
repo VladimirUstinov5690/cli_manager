@@ -21,7 +21,7 @@ def test_analyse_returns_correct_structure():
     with tempfile.TemporaryDirectory() as tmpdir:
         create_test_files(tmpdir)
         
-        result = FileManager.analyze(tmpdir)
+        result = FileManager.analyze(tmpdir)[0]
         
         # В папке два объекта: файл и папка
         assert len(result) == 2

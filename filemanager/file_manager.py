@@ -168,7 +168,8 @@ class FileManager:
                 if os.path.isfile(fp):
                     total_size += os.path.getsize(fp)
         
-        print(f"Общий размер: {size_calculation(total_size)}")
+        res_size = size_calculation(total_size)
+        print(f"Общий размер: {res_size}")
         
         # Размер объектов первого уровня
         data_lst = []
@@ -193,4 +194,4 @@ class FileManager:
         columns = ['№', 'Имя', 'Размер']
         print(pretty_print(res_files_data, columns))
         
-        return data_lst
+        return data_lst, res_size
