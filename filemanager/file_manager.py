@@ -169,7 +169,7 @@ class FileManager:
                     total_size += os.path.getsize(fp)
         
         res_size = size_calculation(total_size)
-        print(f"Общий размер: {size_calculation(total_size)}")
+        print(f"Общий размер: {res_size}")
         
         # Размер объектов первого уровня
         data_lst = []
