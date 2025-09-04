@@ -290,11 +290,6 @@ if __name__ == "__main__":
 
     icon_path = os.path.join(base_dir, "icons", "icon.png")
 
-    icon = QIcon(icon_path)
-    print("ICON PATH:", icon_path)
-    print("EXISTS:", os.path.exists(icon_path))
-    print("QIcon.isNull():", icon.isNull())
-
     # иконка для всего приложения
     app.setWindowIcon(QIcon(icon_path))
     
