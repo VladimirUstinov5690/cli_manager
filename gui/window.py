@@ -51,6 +51,7 @@ class Ui_MainWindow(object):
 "QLabel { color: #1F2937; }\n"
 "QLineEdit, QTextEdit {\n"
 "  background: #FFFFFF;\n"
+"  color: #1F2937;" # Прописал цыет текста явно
 "  border: 1px solid #E5E7EB;\n"
 "  border-radius: 8px;\n"
 "  padding: 6px 10px;\n"
@@ -333,7 +334,7 @@ class Ui_MainWindow(object):
         self.rightLayout.addWidget(self.tabWidget)
         self.rootLayout.addLayout(self.rightLayout)
         MainWindow.setCentralWidget(self.centralwidget)
-
+        
         self.retranslateUi(MainWindow)
         self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
